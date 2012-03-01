@@ -1,0 +1,23 @@
+#!/bin/bash
+# bundle: group text files into package
+#
+# Usage: bundle file(s) > output
+#
+# Authors: Vlad Burca; Alex Zhang
+# Date: 09/20/2011
+# Filename: bundle
+
+echo '# To unbundle, sh this file'
+for i
+do
+	echo "echo $i 1>&2"
+	if test -d $i
+	then
+		echo "mkdir $i"
+		sh bundle $i/*
+	else
+		echo "cat >$i  <<'End of $i'"
+		cat $i
+		echo "End of $i"
+	fi
+done

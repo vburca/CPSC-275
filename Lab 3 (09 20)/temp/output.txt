@@ -1,0 +1,27 @@
+# To unbundle, sh this file
+echo file1 1>&2
+cat >file1  <<'End of file1'
+FILE 1 !!!
+End of file1
+echo file2 1>&2
+cat >file2  <<'End of file2'
+FILE 2 !!!
+End of file2
+echo dir1 1>&2
+mkdir dir1
+# To unbundle, sh this file
+echo dir1/dir2 1>&2
+mkdir dir1/dir2
+# To unbundle, sh this file
+echo dir1/dir2/file5 1>&2
+cat >dir1/dir2/file5  <<'End of dir1/dir2/file5'
+FILE 5
+End of dir1/dir2/file5
+echo dir1/file3 1>&2
+cat >dir1/file3  <<'End of dir1/file3'
+FILE 3
+End of dir1/file3
+echo dir1/file4 1>&2
+cat >dir1/file4  <<'End of dir1/file4'
+FILE 4
+End of dir1/file4

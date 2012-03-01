@@ -1,0 +1,11 @@
+#
+# Author: Tina Lipson, Vlad Burca, Alex Zhang
+# Date: 09 - 27 -2011
+# File: lab04.txt
+#
+
+1) ls .*  - lists the contents of all directories in your 
+	current directory that start with '.' including the 
+	current directory and the parent directory (since they 
+	are . and .., respectively).
+

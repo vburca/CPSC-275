@@ -1,0 +1,9 @@
+# To unbundle, sh this file
+echo file1 1>&2
+cat >file1  <<'End of file1'
+FILE 1 !!!
+End of file1
+echo file2 1>&2
+cat >file2  <<'End of file2'
+FILE 2 !!!
+End of file2

@@ -1,0 +1,81 @@
+#include <sys/types.h>
+#include <dirent.h>
+#include <sys/stat.h>
+#include <stdio.h>
+
+int main() {
+	
+	DIR* dir = opendir((const char*)".");
+	struct dirent* entry;
+	struct stat buf;
+	int closed;
+
+	int i;
+	char filetype[2] = "-d";
+	char perms[3] = "rwx";
+//	char permissions[3][3] = {"---", "---", "---"};	
+	char usr[4] = "---\0";
+	char grp[4] = "---\0";
+	char oth[4] = "---\0";
+
+
+	if (dir != NULL) {
+		while (entry = readdir(dir)) {
+			stat(entry->d_name, &buf);
+			
+			if (buf.st_mode & S_IRUSR)
+				usr[0] = 'r';
+			else	
+				usr[0] = '-';
+			if (buf.st_mode & S_IWUSR)
+				usr[1] = 'w';
+			else 
+				usr[1] = '-';
+			if (buf.st_mode & S_IXUSR)
+				usr[2] = 'x';
+			else
+				usr[2] = '-';
+			if (buf.st_mode & S_IRGRP)
+				grp[0] = 'r';
+			else
+				grp[0] = '-';
+			if (buf.st_mode & S_IWGRP)
+				grp[1] = 'w';
+			else
+				grp[1] = '-';
+			if (buf.st_mode & S_IXGRP)
+				grp[2] = 'x';
+			else
+				grp[2] = '-';
+			if (buf.st_mode & S_IROTH)
+				oth[0] = 'r';
+			else
+				oth[0] = '-';
+			if (buf.st_mode & S_IWOTH)
+				oth[1] = 'w';
+			else
+				oth[1] = '-';
+			if (buf.st_mode & S_IXOTH)
+				oth[2] = 'x';
+			else
+				oth[2] = '-';  
+			
+			printf("%c %s %s %s %s \n", 
+					filetype[S_ISDIR(buf.st_mode)], 
+					usr,
+					grp,
+					oth,
+					entry->d_name);
+		}
+
+		closed = closedir(dir);
+	
+	}
+
+	return 0;
+
+}
+		
+
+
+
